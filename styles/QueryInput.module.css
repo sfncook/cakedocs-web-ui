@@ -5,14 +5,19 @@
 }
 
 .textInput {
+  color: #FF7070;
   background-color: #FFF0F0;
   width: 100%;
   padding: 10px 50px 10px 10px;
-  border: 0;
+  border: 1px transparent solid;
   border-radius: 4px;
   font-size: 16px;
   box-sizing: border-box;
   text-align: right;
+}
+.textInput:focus {
+  outline: none;
+  border: 1px solid #FF7070;
 }
 
 .submitBtn {
