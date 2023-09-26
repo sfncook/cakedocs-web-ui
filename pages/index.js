@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [repos, setRepos] = useState([])
+  const [selectedRepo, _setSelectedRepo] = useState()
 
   useEffect(() => {
     const response = fetch("/api/repos", {
@@ -24,6 +25,11 @@ export default function Home() {
       })
   }, [])
 
+  const setSelectedRepo = repo => {
+    console.log(`HOME.setSelectedRepo ${repo.repo_name}`)
+    _setSelectedRepo(repo)
+  }
+
   return (
     <>
       <Head>
@@ -34,7 +40,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <QueryInput />
-        <FooterContainer repos={repos} />
+        <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
       </main>
     </>
   )

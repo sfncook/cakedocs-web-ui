@@ -4,7 +4,7 @@ import Image from 'next/image'
 import PillButton from "@/components/PillButton";
 import ProjectSelect from "@/components/ProjectSelect";
 
-export default function FooterContainer ({ repos }) {
+export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo }) {
 
     return (
         <div className={styles.footerContainer}>
@@ -17,7 +17,7 @@ export default function FooterContainer ({ repos }) {
               height={24}
               priority
             />
-            <ProjectSelect repos={repos} />
+            <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
           </div>
 
           <div className={styles.footerRightContainer}>
