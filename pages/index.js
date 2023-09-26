@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import styles from '@/styles/Home.module.css'
@@ -7,6 +8,22 @@ import QueryInput from "@/components/QueryInput";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [repos, setRepos] = useState([])
+
+  useEffect(() => {
+    const response = fetch("/api/repos", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        // console.log(res.repos)
+        setRepos(res.repos)
+      })
+  }, [])
+
   return (
     <>
       <Head>
@@ -17,7 +34,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <QueryInput />
-        <FooterContainer />
+        <FooterContainer repos={repos} />
       </main>
     </>
   )

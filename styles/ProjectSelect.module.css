@@ -1,0 +1,8 @@
+/* Style the select element */
+.projectSelect {
+    background: transparent; /* Transparent background */
+    border: none;             /* No border */
+    outline: none;            /* No focus outline */
+    color: #FFA0A0;
+    margin-left: 15px;
+}

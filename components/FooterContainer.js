@@ -2,8 +2,9 @@ import React from 'react';
 import styles from '@/styles/FooterContainer.module.css'
 import Image from 'next/image'
 import PillButton from "@/components/PillButton";
+import ProjectSelect from "@/components/ProjectSelect";
 
-export default function FooterContainer ({  }) {
+export default function FooterContainer ({ repos }) {
 
     return (
         <div className={styles.footerContainer}>
@@ -16,9 +17,7 @@ export default function FooterContainer ({  }) {
               height={24}
               priority
             />
-            <div className={styles.repoTitle}>
-              Profiles Svc
-            </div>
+            <ProjectSelect repos={repos} />
           </div>
 
           <div className={styles.footerRightContainer}>
