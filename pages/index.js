@@ -4,12 +4,14 @@ import {Inter} from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import FooterContainer from "@/components/FooterContainer";
 import QueryInput from "@/components/QueryInput";
+import ChatMessagesContainer from "@/components/ChatMessagesContainer";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [repos, setRepos] = useState([])
   const [selectedRepo, _setSelectedRepo] = useState()
+  const [repoNameToMsgs, _setRepoNameToMsgs] = useState({})
 
   useEffect(() => {
     const response = fetch("/api/repos", {
@@ -30,6 +32,35 @@ export default function Home() {
       })
   }, [])
 
+  const submitQuery = query => {
+    console.log(`HOME.submitQuery ${query}`)
+    addMsgForRepo(selectedRepo, {msg:query, role:'USER'})
+    const response = fetch("/api/query", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: query,
+        repo_url: selectedRepo.repo_url,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        addMsgForRepo(selectedRepo, {msg:res, role:'ASSISTANT'})
+      })
+  }
+
+  const addMsgForRepo = (repo, msg) => {
+    const _repoToMsgs = {...repoToMsgs}
+    if(!_repoToMsgs[repo.repo_name]) {
+      _repoToMsgs[repo.repo_name] = []
+    }
+    _repoToMsgs[repo.repo_name].push(msg)
+    _setRepoToMsgs(_repoToMsgs)
+  }
+
   const setSelectedRepo = repo => {
     console.log(`HOME.setSelectedRepo ${repo.repo_name}`)
     _setSelectedRepo(repo)
@@ -44,6 +75,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <ChatMessagesContainer msgs={selectedRepo && repoNameToMsgs[selectedRepo.repo_name]} selectedRepo={selectedRepo} />
         <QueryInput />
         <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
       </main>
