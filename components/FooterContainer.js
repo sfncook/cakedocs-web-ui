@@ -21,9 +21,9 @@ export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo 
           </div>
 
           <div className={styles.footerRightContainer}>
-            <PillButton text="Describe the system architecture" />
-            <PillButton text="Draw a sequence diagram of the API" />
-            <PillButton text="What does this application do?" />
+            {/*<PillButton text="Describe the system architecture" />*/}
+            {/*<PillButton text="Draw a sequence diagram of the API" />*/}
+            {/*<PillButton text="What does this application do?" />*/}
           </div>
         </div>
     );
