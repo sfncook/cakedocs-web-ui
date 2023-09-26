@@ -22,6 +22,11 @@ export default function Home() {
       .then(res => {
         // console.log(res.repos)
         setRepos(res.repos)
+
+        if(res.repos && res.repos.length && !selectedRepo) {
+          // console.log(`Home.setting selectedRepo to ${res.repos[0].repo_name}`)
+          setSelectedRepo(res.repos[0])
+        }
       })
   }, [])
 
