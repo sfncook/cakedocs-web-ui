@@ -1,15 +1,18 @@
 
 export default async function handler(req, res) {
   console.log(`query.js ${req.body.query} ${req.body.repo_url}`)
+  const body = {
+    "git_url": req.body.repo_url,
+    "query": req.body.query,
+    "msgs": req.body.msgs,
+  }
+  // console.log(JSON.stringify(body))
   await fetch("https://us-central1-cook-250617.cloudfunctions.net/llm/query_llm", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      "git_url": req.body.repo_url,
-      "query": req.body.query
-    }),
+    body: JSON.stringify(body),
   })
     .then(apiResponse => apiResponse.text())
     .then(apiResponse => {

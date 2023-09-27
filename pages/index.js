@@ -44,6 +44,7 @@ export default function Home() {
       body: JSON.stringify({
         query: query,
         repo_url: selectedRepo.repo_url,
+        msgs: repoNameToMsgs[selectedRepo.repo_name],
       }),
     })
       .then(res => res.json())
