@@ -12,7 +12,7 @@ export default function ChatMessage ({ msg, role }) {
   }
 
   return (
-    <div className={className_}>
+    <div className={`${styles.chatMessage} ${className_}`}>
       {msg}
     </div>
   );

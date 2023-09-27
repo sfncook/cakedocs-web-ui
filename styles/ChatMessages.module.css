@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
+  padding: 10px;
+  margin-bottom: 100px;
 }
 
 .chatMessage{
-
+  padding: 10px;
 }
 .chatMessageSystem {
   color: #FF7070;

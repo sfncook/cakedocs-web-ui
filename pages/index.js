@@ -97,8 +97,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <ChatMessagesContainer msgs={selectedRepo && repoNameToMsgs[selectedRepo.repo_name]} selectedRepo={selectedRepo} />
-        <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} />
-        <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
+        <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} />
       </main>
     </>
   )
