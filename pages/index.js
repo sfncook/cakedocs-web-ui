@@ -5,6 +5,9 @@ import styles from '@/styles/Home.module.css'
 import FooterContainer from "@/components/FooterContainer";
 import QueryInput from "@/components/QueryInput";
 import ChatMessagesContainer from "@/components/ChatMessagesContainer";
+const { v4: uuidv4 } = require('uuid');
+// console.log(uuidv4());  // Outputs a version 4 UUID
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,9 +35,9 @@ export default function Home() {
       })
   }, [])
 
-  const submitQuery = query => {
+  const submitQuery = async query => {
     console.log(`HOME.submitQuery ${query}`)
-    addMsgForRepo(selectedRepo, {msg:query, role:'USER'})
+    addMsgForRepo(selectedRepo, {id: uuidv4(), msg: query, role: 'USER'})
     const response = fetch("/api/query", {
       method: "POST",
       headers: {
@@ -47,18 +50,26 @@ export default function Home() {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
-        addMsgForRepo(selectedRepo, {msg:res, role:'ASSISTANT'})
+        addMsgForRepo(selectedRepo, {id: uuidv4(), msg:res.assistantResponse, role:'ASSISTANT'})
       })
   }
 
   const addMsgForRepo = (repo, msg) => {
-    const _repoToMsgs = {...repoToMsgs}
-    if(!_repoToMsgs[repo.repo_name]) {
-      _repoToMsgs[repo.repo_name] = []
-    }
-    _repoToMsgs[repo.repo_name].push(msg)
-    _setRepoToMsgs(_repoToMsgs)
+    _setRepoNameToMsgs(prevRepoNameToMsgs => {
+      console.log(`HOME.addMsgForRepo`)
+      console.log(prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].length)
+      const msgAlreadyInList = prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].some(item => item.id === msg.id)
+      if(msgAlreadyInList) {
+        console.log('already in list')
+        return prevRepoNameToMsgs
+      }
+      const _repoToMsgs = {...prevRepoNameToMsgs}
+      if(!_repoToMsgs[repo.repo_name]) {
+        _repoToMsgs[repo.repo_name] = []
+      }
+      _repoToMsgs[repo.repo_name].push(msg)
+      return _repoToMsgs;
+    });
   }
 
   const setSelectedRepo = repo => {
@@ -76,7 +87,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <ChatMessagesContainer msgs={selectedRepo && repoNameToMsgs[selectedRepo.repo_name]} selectedRepo={selectedRepo} />
-        <QueryInput />
+        <QueryInput submitQuery={submitQuery} />
         <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
       </main>
     </>
