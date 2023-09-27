@@ -3,6 +3,11 @@
   width: 650px;
   padding: 0 10px;
 }
+@media (max-width: 768px) {
+  .queryInputContainer {
+    width: 100%;
+  }
+}
 
 .textInput {
   color: #FF7070;
