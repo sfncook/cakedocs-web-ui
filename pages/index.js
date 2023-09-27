@@ -13,6 +13,7 @@ export default function Home() {
   const [repos, setRepos] = useState([])
   const [selectedRepo, _setSelectedRepo] = useState()
   const [repoNameToMsgs, _setRepoNameToMsgs] = useState({})
+  const [waiting, setWaiting] = useState(false)
 
   useEffect(() => {
     const response = fetch("/api/repos", {
@@ -34,7 +35,7 @@ export default function Home() {
   }, [])
 
   const submitQuery = async query => {
-    // console.log(`HOME.submitQuery ${query}`)
+    setWaiting(true)
     await fetch("/api/query", {
       method: "POST",
       headers: {
@@ -51,6 +52,9 @@ export default function Home() {
         // console.log(`HOME.submitQuery response ${newId}`)
         // console.log(res)
         addMsgForRepo(selectedRepo, {id: newId, msg:res.assistantResponse, role:'ASSISTANT'})
+      })
+      .finally(() => {
+        setWaiting(false)
       })
   }
 
@@ -97,7 +101,14 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <ChatMessagesContainer msgs={selectedRepo && repoNameToMsgs[selectedRepo.repo_name]} selectedRepo={selectedRepo} />
-        <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} />
+        <FooterContainer
+          repos={repos}
+          setSelectedRepo={setSelectedRepo}
+          selectedRepo={selectedRepo}
+          submitQuery={submitQuery}
+          addNewUserMsg={addNewUserMsg}
+          waiting={waiting}
+        />
       </main>
     </>
   )
