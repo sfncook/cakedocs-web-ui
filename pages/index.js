@@ -6,8 +6,6 @@ import FooterContainer from "@/components/FooterContainer";
 import QueryInput from "@/components/QueryInput";
 import ChatMessagesContainer from "@/components/ChatMessagesContainer";
 const { v4: uuidv4 } = require('uuid');
-// console.log(uuidv4());  // Outputs a version 4 UUID
-
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,9 +34,8 @@ export default function Home() {
   }, [])
 
   const submitQuery = async query => {
-    console.log(`HOME.submitQuery ${query}`)
-    addMsgForRepo(selectedRepo, {id: uuidv4(), msg: query, role: 'USER'})
-    const response = fetch("/api/query", {
+    // console.log(`HOME.submitQuery ${query}`)
+    await fetch("/api/query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,25 +47,38 @@ export default function Home() {
     })
       .then(res => res.json())
       .then(res => {
-        addMsgForRepo(selectedRepo, {id: uuidv4(), msg:res.assistantResponse, role:'ASSISTANT'})
+        const newId = uuidv4()
+        // console.log(`HOME.submitQuery response ${newId}`)
+        // console.log(res)
+        addMsgForRepo(selectedRepo, {id: newId, msg:res.assistantResponse, role:'ASSISTANT'})
       })
   }
 
+  const addNewUserMsg = msg => {
+    const newId = uuidv4()
+    // console.log(`HOME.addNewUserMsg ${newId}`)
+    addMsgForRepo(selectedRepo, {id: newId, msg:msg, role:'USER'})
+  }
+
   const addMsgForRepo = (repo, msg) => {
+    // console.log(`addMsgForRepo ${msg.id} ${msg.msg}`)
     _setRepoNameToMsgs(prevRepoNameToMsgs => {
-      console.log(`HOME.addMsgForRepo`)
-      console.log(prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].length)
-      const msgAlreadyInList = prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].some(item => item.id === msg.id)
-      if(msgAlreadyInList) {
-        console.log('already in list')
+      if(msg.msg) {
+        const msgAlreadyInList = prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].some(item => item.id === msg.id)
+        if(msgAlreadyInList) {
+          // console.log('already in list')
+          console.log(prevRepoNameToMsgs[repo.repo_name])
+          return prevRepoNameToMsgs
+        }
+        const _repoToMsgs = {...prevRepoNameToMsgs}
+        if(!_repoToMsgs[repo.repo_name]) {
+          _repoToMsgs[repo.repo_name] = []
+        }
+        _repoToMsgs[repo.repo_name].push(msg)
+        return _repoToMsgs;
+      } else {
         return prevRepoNameToMsgs
       }
-      const _repoToMsgs = {...prevRepoNameToMsgs}
-      if(!_repoToMsgs[repo.repo_name]) {
-        _repoToMsgs[repo.repo_name] = []
-      }
-      _repoToMsgs[repo.repo_name].push(msg)
-      return _repoToMsgs;
     });
   }
 
@@ -87,7 +97,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <ChatMessagesContainer msgs={selectedRepo && repoNameToMsgs[selectedRepo.repo_name]} selectedRepo={selectedRepo} />
-        <QueryInput submitQuery={submitQuery} />
+        <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} />
         <FooterContainer repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
       </main>
     </>

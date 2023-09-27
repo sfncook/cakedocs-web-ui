@@ -2,11 +2,12 @@ import { useState } from "react";
 import styles from '@/styles/QueryInput.module.css'
 import Image from 'next/image'
 
-export default function QueryInput ({ submitQuery }) {
+export default function QueryInput ({ submitQuery, addNewUserMsg }) {
   const [queryTxt, setQueryText] = useState("")
 
   const handleSubmit = () => {
     console.log(`QueryInput.handleSubmit ${queryTxt}`)
+    addNewUserMsg(queryTxt)
     submitQuery(queryTxt)
     setQueryText("")
   }
