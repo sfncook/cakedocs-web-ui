@@ -8,7 +8,7 @@ export default function ChatMessagesContainer ({ msgs, selectedRepo}) {
 
   return (
     <div className={styles.chatMessagesContainer}>
-      <ChatMessage msg={welcomeMsg} role='SYSTEM' />
+      <ChatMessage msg={welcomeMsg} role='system' />
       {msgs && msgs.map((msg, index) => (<ChatMessage key={index} msg={msg.msg} role={msg.role} />))}
     </div>
   );

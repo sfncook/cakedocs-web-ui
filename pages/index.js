@@ -52,7 +52,7 @@ export default function Home() {
         const newId = uuidv4()
         // console.log(`HOME.submitQuery response ${newId}`)
         // console.log(res)
-        addMsgForRepo(selectedRepo, {id: newId, msg:res.assistantResponse, role:'ASSISTANT'})
+        addMsgForRepo(selectedRepo, {id: newId, msg:res.assistantResponse, role:'assistant'})
       })
       .finally(() => {
         setWaiting(false)
@@ -62,7 +62,7 @@ export default function Home() {
   const addNewUserMsg = msg => {
     const newId = uuidv4()
     // console.log(`HOME.addNewUserMsg ${newId}`)
-    addMsgForRepo(selectedRepo, {id: newId, msg:msg, role:'USER'})
+    addMsgForRepo(selectedRepo, {id: newId, msg:msg, role:'user'})
   }
 
   const addMsgForRepo = (repo, msg) => {

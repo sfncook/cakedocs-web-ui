@@ -2,7 +2,7 @@
 export default async function handler(req, res) {
   console.log(`query.js ${req.body.query} ${req.body.repo_url}`)
   const body = {
-    "git_url": req.body.repo_url,
+    "repo_url": req.body.repo_url,
     "query": req.body.query,
     "msgs": req.body.msgs,
   }
