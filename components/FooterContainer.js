@@ -10,8 +10,7 @@ export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo,
 
     return (
         <div className={styles.footerContainer}>
-          {waiting && <Spinner />}
-          <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} />
+          <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
           <div className={styles.footerContainer2}>
             <div className={styles.footerLeftContainer}>
               <Image
