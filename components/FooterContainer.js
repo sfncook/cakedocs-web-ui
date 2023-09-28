@@ -17,7 +17,14 @@ export default function FooterContainer ({
   return (
       <div className={styles.footerContainer}>
         <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
-        <Drawer/>
+        <Drawer
+          repos={repos}
+          setSelectedRepo={setSelectedRepo}
+          selectedRepo={selectedRepo}
+          models={models}
+          setSelectedModel={setSelectedModel}
+          selectedModel={selectedModel}
+        />
         <div className={styles.footerContainer2}>
           <div className={styles.footerLeftContainer}>
             <Image
@@ -29,7 +36,6 @@ export default function FooterContainer ({
               priority
             />
             <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
-
             <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
           </div>
 

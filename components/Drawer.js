@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
 import styles from '@/styles/Drawer.module.css'
+import ProjectSelect from "@/components/ProjectSelect";
+import ModelSelect from "@/components/ModelSelect";
 
-export default function Drawer ({ }) {
+export default function Drawer ({
+  repos, setSelectedRepo, selectedRepo,
+  models, setSelectedModel, selectedModel,
+}) {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleOpen = () => {
@@ -14,9 +19,8 @@ export default function Drawer ({ }) {
           <span className={styles.arrowIcon}>↑</span>
         </button>
           <div className={styles.drawerContent}>
-              <p>Your drawer content goes here.</p>
-              <h2>Hello world!</h2>
-              <div>I'm content!</div>
+            <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
+            <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
           </div>
       </div>
     );

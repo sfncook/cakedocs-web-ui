@@ -46,3 +46,13 @@
   text-decoration: underline;
   margin-left: 10px;
 }
+
+/* Media query for mobile sized */
+@media (max-width: 768px) {
+  .footerContainer2 {
+    display: none;
+  }
+  .footerContainer {
+    padding-bottom: 50px;
+  }
+}
