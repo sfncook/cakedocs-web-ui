@@ -1,4 +1,6 @@
 import styles from '@/styles/ProjectSelect.module.css'
+import {FaExternalLinkAlt, FaGithub} from "react-icons/fa";
+import React from "react";
 
 export default function ProjectSelect ({ repos, setSelectedRepo, selectedRepo }) {
 
@@ -10,10 +12,17 @@ export default function ProjectSelect ({ repos, setSelectedRepo, selectedRepo })
   }
 
   return (
-    <select value={selectedRepo && selectedRepo.repo_name} onChange={handleChange} className={styles.projectSelect}>
+    <div className={styles.selectContainer}>
+      <FaGithub />
+      <select value={selectedRepo && selectedRepo.repo_name} onChange={handleChange} className={styles.projectSelect}>
+        {
+          repos.map(repo => (<option key={repo.repo_name} value={repo.repo_name}>{repo.repo_name}</option>))
+        }
+      </select>
       {
-        repos.map(repo => (<option key={repo.repo_name} value={repo.repo_name}>{repo.repo_name}</option>))
+        selectedRepo && selectedRepo.repo_url &&
+        <a href={selectedRepo.repo_url} target='_blank'><FaExternalLinkAlt className={styles.openRepoLinkImg} /></a>
       }
-    </select>
+    </div>
   );
 };

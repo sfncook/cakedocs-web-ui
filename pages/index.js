@@ -14,6 +14,8 @@ export default function Home() {
   const [selectedRepo, _setSelectedRepo] = useState()
   const [repoNameToMsgs, _setRepoNameToMsgs] = useState({})
   const [waiting, setWaiting] = useState(false)
+  const [models, setModels] = useState(['gpt-3.5-turbo', 'gpt-4-0613'])
+  const [selectedModel, setSelectedModel] = useState('gpt-4-0613')
 
   useEffect(() => {
     const response = fetch("/api/repos", {
@@ -47,6 +49,7 @@ export default function Home() {
         query,
         repo_url: selectedRepo.repo_url,
         msgs,
+        model: selectedModel,
       }),
     })
       .then(res => res.json())
@@ -110,6 +113,9 @@ export default function Home() {
           submitQuery={submitQuery}
           addNewUserMsg={addNewUserMsg}
           waiting={waiting}
+          models={models}
+          setSelectedModel={setSelectedModel}
+          selectedModel={selectedModel}
         />
       </main>
     </>

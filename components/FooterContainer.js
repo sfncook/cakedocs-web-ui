@@ -6,8 +6,13 @@ import ProjectSelect from "@/components/ProjectSelect";
 import QueryInput from "@/components/QueryInput";
 import Spinner from "@/components/Spinner";
 import { FaExternalLinkAlt } from 'react-icons/fa';
+import ModelSelect from "@/components/ModelSelect";
 
-export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo, submitQuery, addNewUserMsg, waiting }) {
+export default function FooterContainer ({
+    repos, setSelectedRepo, selectedRepo,
+    submitQuery, addNewUserMsg, waiting,
+    models, setSelectedModel, selectedModel,
+}) {
   return (
       <div className={styles.footerContainer}>
         <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
@@ -22,10 +27,8 @@ export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo,
               priority
             />
             <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
-            {
-              selectedRepo && selectedRepo.repo_url &&
-              <a href={selectedRepo.repo_url} target='_blank'><FaExternalLinkAlt className={styles.openRepoLinkImg} /></a>
-            }
+
+            <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
           </div>
 
           <div className={styles.footerRightContainer}>

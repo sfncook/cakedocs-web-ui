@@ -4,5 +4,25 @@
     border: none;             /* No border */
     outline: none;            /* No focus outline */
     color: #FFA0A0;
+    cursor: pointer;
+}
+.projectSelect:hover {
+    color: #FF7070;
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     margin-left: 15px;
+}
+
+.openRepoLinkImg {
+    width: 0.8rem;
+    height: 0.8rem;
+    cursor: pointer;
+    color: #FFA0A0;
+}
+.openRepoLinkImg:hover {
+    color: #FF7070;
 }
