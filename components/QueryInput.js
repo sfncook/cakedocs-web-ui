@@ -3,8 +3,7 @@ import styles from '@/styles/QueryInput.module.css'
 import Image from 'next/image'
 import Spinner from "@/components/Spinner";
 
-export default function QueryInput ({ submitQuery, addNewUserMsg, waiting }) {
-  const [queryTxt, setQueryText] = useState("")
+export default function QueryInput ({ submitQuery, addNewUserMsg, waiting, queryTxt, setQueryText }) {
 
   const handleSubmit = () => {
     // console.log(`QueryInput.handleSubmit ${queryTxt}`)

@@ -15,6 +15,13 @@ export default function FooterContainer ({
     models, setSelectedModel, selectedModel,
 }) {
   const [openDrawer, setOpenDrawer] = useState()
+  const [queryTxt, setQueryText] = useState("")
+
+  const onClickIceBreakerButtn = text => {
+    setQueryText('')
+    submitQuery(text)
+    setOpenDrawer(null)
+  }
 
   const leftDrawerContent = (
     <div className={stylesDrawer.drawerContent}>
@@ -30,10 +37,10 @@ export default function FooterContainer ({
       <div className={stylesDrawer.iceBreakersContent}>
         <div className={stylesDrawer.iceBreakersTitle}>Wondering what to ask? Try these!</div>
         <div className={stylesDrawer.iceBreakersGrid}>
-          <PillButton text="Describe the system architecture." />
-          <PillButton text="How well is the software written?" />
-          <PillButton text="What does this application do?" />
-          <PillButton text="What are the API endpoints?" />
+          <PillButton text="Describe the system architecture." onClick={onClickIceBreakerButtn}/>
+          <PillButton text="How well is the software written?" onClick={onClickIceBreakerButtn}/>
+          <PillButton text="What does this application do?" onClick={onClickIceBreakerButtn}/>
+          <PillButton text="What are the API endpoints?" onClick={onClickIceBreakerButtn}/>
         </div>
       </div>
     </div>
@@ -41,7 +48,13 @@ export default function FooterContainer ({
 
   return (
       <div className={styles.footerContainer}>
-        <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
+        <QueryInput
+          submitQuery={submitQuery}
+          addNewUserMsg={addNewUserMsg}
+          waiting={waiting}
+          queryTxt={queryTxt}
+          setQueryText={setQueryText}
+        />
         <div className={styles.footerContainer2}>
           <div className={styles.footerLeftContainer}>
             <Drawer
