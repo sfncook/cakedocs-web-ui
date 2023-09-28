@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import styles from '@/styles/Drawer.module.css'
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 
-export default function Drawer ({ content, title }) {
-    const [isOpen, setIsOpen] = useState(false)
+export default function Drawer ({ content, title, isOpen, handleOpen, handleClose }) {
 
     const toggleOpen = () => {
-        setIsOpen(!isOpen)
+      if (isOpen) {
+        handleClose()
+      } else {
+        handleOpen()
+      }
     }
 
     const icon = isOpen ? <FaRegArrowAltCircleDown /> : <FaRegArrowAltCircleUp />
