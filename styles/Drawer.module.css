@@ -2,23 +2,24 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  maxHeight: 50px;  /* Initially showing just the button */
   overflow: hidden;
-  transition: maxHeight 0.5s ease-out;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top: 1px solid #FF7070;
+  background-color: white;
 }
 
 .drawerContent {
   display: none;
-  backgroundColor: #eee;
   padding: 20px;
-  boxShadow: 0px -3px 5px rgba(0,0,0,0.2);
+  height: 200px;
 }
 
 .toggleButton {
   width: 100%;
   textAlign: center;
   padding: 10px;
-  backgroundColor: #ddd;
+  background-color: #FFF0F0;
   border: none;
   cursor: pointer;
   outline: none;
@@ -28,11 +29,17 @@
   display: inline-block;
   transform: rotate(0deg);
   transition: transform 0.3s;
+  color: #FF7070;
+  font-weight: 800;
 }
 
 /* Styles for when the drawer is open */
 .drawerContainer.open {
-  maxHeight: 70vh;
+  transform: translateY(0);
+}
+
+.drawerContainer.closed {
+  transform: translateY(0);
 }
 
 .drawerContainer.open .drawerContent {

@@ -9,15 +9,15 @@ export default function Drawer ({ }) {
     }
 
     return (
-      <div className={`${styles.drawerContainer} ${isOpen && styles.open}`}>
+      <div className={`${styles.drawerContainer} ${isOpen && styles.open} ${!isOpen && styles.closed}`}>
+        <button className={styles.toggleButton} onClick={toggleOpen}>
+          <span className={styles.arrowIcon}>↑</span>
+        </button>
           <div className={styles.drawerContent}>
               <p>Your drawer content goes here.</p>
               <h2>Hello world!</h2>
               <div>I'm content!</div>
           </div>
-          <button className={styles.toggleButton} onClick={toggleOpen}>
-              <span className={styles.arrowIcon}>↑</span>
-          </button>
       </div>
     );
 };
