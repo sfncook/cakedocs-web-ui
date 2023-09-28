@@ -15,16 +15,23 @@ export default function FooterContainer ({
 
   const leftDrawerContent = (
     <div className={stylesDrawer.drawerContent}>
-      <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
-      <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
+      <div className={stylesDrawer.settingsContent}>
+        <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
+        <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
+      </div>
     </div>
   )
 
   const rightDrawerContent = (
     <div className={stylesDrawer.drawerContent}>
-      <PillButton text="Describe the system architecture." />
-      <PillButton text="How well written is the software?" />
-      <PillButton text="What does this application do?" />
+      <div className={stylesDrawer.iceBreakersContent}>
+        <div className={stylesDrawer.iceBreakersTitle}>Wondering what to ask? Try these!</div>
+        <div className={stylesDrawer.iceBreakersGrid}>
+          <PillButton text="Describe the system architecture." />
+          <PillButton text="How well written is the software?" />
+          <PillButton text="What does this application do?" />
+        </div>
+      </div>
     </div>
   )
 

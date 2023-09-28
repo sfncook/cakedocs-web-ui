@@ -45,14 +45,37 @@
   display: block;
 }
 
-.drawerContent :first-child {
+.settingsContent :first-child {
   margin-top: 0;
 }
-.drawerContent :last-child {
+.settingsContent :last-child {
   margin-bottom: 0;
 }
-.drawerContent > * {
+.settingsContent > * {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 0 !important;
+}
+
+.iceBreakersContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.iceBreakersTitle {
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+.iceBreakersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Media query for mobile browsers */
+@media (max-width: 768px) {
+  .iceBreakersGrid {
+    display: block;
+  }
 }
