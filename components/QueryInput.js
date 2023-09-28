@@ -7,8 +7,7 @@ export default function QueryInput ({ submitQuery, addNewUserMsg, waiting }) {
   const [queryTxt, setQueryText] = useState("")
 
   const handleSubmit = () => {
-    console.log(`QueryInput.handleSubmit ${queryTxt}`)
-    addNewUserMsg(queryTxt)
+    // console.log(`QueryInput.handleSubmit ${queryTxt}`)
     submitQuery(queryTxt)
     setQueryText("")
   }
@@ -42,7 +41,7 @@ export default function QueryInput ({ submitQuery, addNewUserMsg, waiting }) {
           }
         }}
         className={styles.textInput}
-        placeholder="Enter text..."
+        placeholder={waiting ? "Give me a moment to look that up for you..." : "Enter text..."}
       />
       <button className={submitBtnClassName} disabled={submitBtnDisabled} >
         {btnImg}

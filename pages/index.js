@@ -36,15 +36,17 @@ export default function Home() {
 
   const submitQuery = async query => {
     setWaiting(true)
+    const msgs = repoNameToMsgs[selectedRepo.repo_name] || []
+    addNewUserMsg(query)
     await fetch("/api/query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: query,
+        query,
         repo_url: selectedRepo.repo_url,
-        msgs: [...repoNameToMsgs[selectedRepo.repo_name] || [], {msg:query, role:'user'}]
+        msgs,
       }),
     })
       .then(res => res.json())
@@ -72,7 +74,7 @@ export default function Home() {
         const msgAlreadyInList = prevRepoNameToMsgs[repo.repo_name] && prevRepoNameToMsgs[repo.repo_name].some(item => item.id === msg.id)
         if(msgAlreadyInList) {
           // console.log('already in list')
-          console.log(prevRepoNameToMsgs[repo.repo_name])
+          // console.log(prevRepoNameToMsgs[repo.repo_name])
           return prevRepoNameToMsgs
         }
         const _repoToMsgs = {...prevRepoNameToMsgs}
