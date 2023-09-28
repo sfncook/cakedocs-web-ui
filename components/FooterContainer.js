@@ -18,26 +18,16 @@ export default function FooterContainer ({
   return (
       <div className={styles.footerContainer}>
         <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
-        <Drawer
-          repos={repos}
-          setSelectedRepo={setSelectedRepo}
-          selectedRepo={selectedRepo}
-          models={models}
-          setSelectedModel={setSelectedModel}
-          selectedModel={selectedModel}
-        />
         <div className={styles.footerContainer2}>
           <div className={styles.footerLeftContainer}>
-            <Image
-              src="/cake.png"
-              alt="CakeDocs.AI"
-              className={styles.cakeLogo}
-              width={100}
-              height={24}
-              priority
+            <Drawer
+              repos={repos}
+              setSelectedRepo={setSelectedRepo}
+              selectedRepo={selectedRepo}
+              models={models}
+              setSelectedModel={setSelectedModel}
+              selectedModel={selectedModel}
             />
-            <ProjectSelect repos={repos} setSelectedRepo={setSelectedRepo} selectedRepo={selectedRepo} />
-            <ModelSelect models={models} setSelectedModel={setSelectedModel} selectedModel={selectedModel} />
           </div>
 
           <div className={styles.footerRightContainer}>

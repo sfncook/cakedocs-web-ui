@@ -8,6 +8,7 @@
   justify-content: flex-end;
   align-items: center;
   background: linear-gradient(to bottom, transparent, white 50%);
+  padding-bottom: 50px;
 }
 .footerContainer2 {
   width: 100%;
@@ -49,11 +50,11 @@
 }
 
 /* Media query for mobile sized */
-@media (max-width: 768px) {
-  .footerContainer2 {
-    display: none;
-  }
-  .footerContainer {
-    padding-bottom: 50px;
-  }
-}
+/*@media (max-width: 768px) {*/
+/*  .footerContainer2 {*/
+/*    display: none;*/
+/*  }*/
+/*  .footerContainer {*/
+/*    padding-bottom: 50px;*/
+/*  }*/
+/*}*/

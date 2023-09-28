@@ -1,11 +1,11 @@
 .drawerContainer {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 50%;
   overflow: hidden;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  border-top: 1px solid #FF7070;
+  border: 1px solid #FF7070;
   background-color: white;
 }
 
@@ -22,14 +22,14 @@
   border: none;
   cursor: pointer;
   outline: none;
-}
-
-.arrowIcon {
-  display: inline-block;
-  transform: rotate(0deg);
-  transition: transform 0.3s;
   color: #FF7070;
-  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.toggleButton > * {
+  margin-left: 4px;
+  margin-right: 8px;
 }
 
 /* Styles for when the drawer is open */
@@ -57,13 +57,9 @@
   margin-left: 0 !important;
 }
 
-.drawerContainer.open .arrowIcon {
-  transform: rotate(180deg);
-}
-
 /* Media query for desktop sized browsers */
-@media (min-width: 768px) {
-  .drawerContainer {
-    display: none;
-  }
-}
+/*@media (min-width: 768px) {*/
+/*  .drawerContainer {*/
+/*    display: none;*/
+/*  }*/
+/*}*/
