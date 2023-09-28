@@ -3,8 +3,8 @@ export default async function handler(req, res) {
   console.log(`query.js ${req.body.query} ${req.body.repo_url}`)
   const body = {...req.body}
   // console.log(JSON.stringify(body))
-  // await fetch("https://us-central1-cook-250617.cloudfunctions.net/llm/query_llm", {
-  await fetch("http://127.0.0.1:5000/llm/query_llm", {
+  await fetch("https://us-central1-cook-250617.cloudfunctions.net/llm/query_llm", {
+  // await fetch("http://127.0.0.1:5000/llm/query_llm", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
