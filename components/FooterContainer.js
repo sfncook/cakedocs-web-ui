@@ -8,6 +8,7 @@ import Spinner from "@/components/Spinner";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import ModelSelect from "@/components/ModelSelect";
 import Drawer from "@/components/Drawer";
+import QuestionHintsDrawer from "@/components/QuestionHintsDrawer";
 
 export default function FooterContainer ({
     repos, setSelectedRepo, selectedRepo,
@@ -40,9 +41,7 @@ export default function FooterContainer ({
           </div>
 
           <div className={styles.footerRightContainer}>
-            {/*<PillButton text="Describe the system architecture" />*/}
-            {/*<PillButton text="Draw a sequence diagram of the API" />*/}
-            {/*<PillButton text="What does this application do?" />*/}
+            <QuestionHintsDrawer />
           </div>
         </div>
       </div>
