@@ -18,9 +18,7 @@ export default async function handler(req, res) {
     .then(apiResponse => apiResponse.text())
     .then(apiResponse => {
       console.log(apiResponse)
-      res.status(200).json({
-        assistantResponse: apiResponse,
-      });
+      res.status(200).json(apiResponse);
     })
   console.log('done')
 }

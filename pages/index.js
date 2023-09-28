@@ -51,10 +51,9 @@ export default function Home() {
     })
       .then(res => res.json())
       .then(res => {
+        const resObj = JSON.parse(res)
         const newId = uuidv4()
-        // console.log(`HOME.submitQuery response ${newId}`)
-        // console.log(res)
-        addMsgForRepo(selectedRepo, {id: newId, msg:res.assistantResponse, role:'assistant'})
+        addMsgForRepo(selectedRepo, {id: newId, msg:resObj.assistant_response, role:'assistant', usage:resObj.usage})
       })
       .finally(() => {
         setWaiting(false)

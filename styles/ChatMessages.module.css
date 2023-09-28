@@ -27,3 +27,15 @@
   color: #FF7070;
   text-align: right;
 }
+
+.usageIndicatorContainer {
+  color: #FFA0A0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.usageIndicatorText {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+

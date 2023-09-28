@@ -34,7 +34,7 @@ And this is a paragraph. Here's some code: \`const x = 10;\`
           case 'system':
             return (<ChatMessageSystem key={index} msg={msg.msg}/>)
           case 'assistant':
-            return (<ChatMessageAssistant key={index} msg={msg.msg}/>)
+            return (<ChatMessageAssistant key={index} msg={msg}/>)
           case 'user':
           default:
             return (<ChatMessageUser key={index} msg={msg.msg}/>)
