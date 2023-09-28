@@ -88,7 +88,7 @@ export default function Home() {
   }
 
   const setSelectedRepo = repo => {
-    console.log(`HOME.setSelectedRepo ${repo.repo_name}`)
+    // console.log(`HOME.setSelectedRepo ${repo.repo_name}`)
     _setSelectedRepo(repo)
   }
 

@@ -8,8 +8,6 @@ import Spinner from "@/components/Spinner";
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
 export default function FooterContainer ({ repos, setSelectedRepo, selectedRepo, submitQuery, addNewUserMsg, waiting }) {
-
-  console.log(selectedRepo)
   return (
       <div className={styles.footerContainer}>
         <QueryInput submitQuery={submitQuery} addNewUserMsg={addNewUserMsg} waiting={waiting} />
